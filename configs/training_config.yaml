@@ -1,0 +1,63 @@
+# OpenNyAI Training Configuration
+# ================================
+
+# Training Parameters
+training:
+  num_epochs: 10
+  batch_size: 16
+  learning_rate: 2.0e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  gradient_accumulation_steps: 1
+  max_grad_norm: 1.0
+
+# Optimizer
+optimizer:
+  name: "adamw"
+  betas: [0.9, 0.999]
+  eps: 1.0e-8
+
+# Scheduler
+scheduler:
+  name: "linear"  # linear, cosine, polynomial
+  num_warmup_steps: 500
+
+# Data
+data:
+  train_file: "data/processed/train.json"
+  val_file: "data/processed/val.json"
+  test_file: "data/processed/test.json"
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+
+# Mixed Precision
+fp16: true
+bf16: false
+
+# Logging & Checkpointing
+logging:
+  logging_steps: 100
+  eval_steps: 500
+  save_steps: 1000
+  save_total_limit: 3
+  report_to:
+    - tensorboard
+    # - wandb
+    # - mlflow
+
+# Early Stopping
+early_stopping:
+  enabled: true
+  patience: 3
+  metric: "eval_loss"
+  greater_is_better: false
+
+# Output
+output:
+  dir: "models/trained"
+  overwrite: true
+  load_best_model_at_end: true
+
+# Reproducibility
+seed: 42

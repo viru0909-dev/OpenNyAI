@@ -1,0 +1,135 @@
+# OpenNyAI - Sovereign Legal Intelligence for Indian Judiciary
+# Python Dependencies
+
+# ============================================
+# Core ML/DL Frameworks
+# ============================================
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# ============================================
+# NLP Libraries - Transformers & PEFT
+# ============================================
+transformers>=4.36.0
+datasets>=2.14.0
+tokenizers>=0.14.0
+sentencepiece>=0.1.99
+accelerate>=0.24.0
+peft>=0.6.0                 # LoRA/QLoRA fine-tuning
+trl>=0.7.0                  # Supervised Fine-Tuning Trainer
+bitsandbytes>=0.41.0        # 4-bit quantization for QLoRA
+
+# spaCy and models
+spacy>=3.6.0
+# Download: python -m spacy download en_core_web_sm
+
+# NLTK
+nltk>=3.8.1
+
+# Indian Language Support
+indic-nlp-library>=0.92
+
+# Sequence Labeling
+seqeval>=1.2.2              # NER/RRL evaluation
+torchcrf>=1.1.0             # CRF layer for sequence labeling
+
+# ============================================
+# Data Processing
+# ============================================
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.11.0
+scikit-learn>=1.3.0
+
+# ============================================
+# Document Processing & Scraping
+# ============================================
+PyPDF2>=3.0.0
+pdfplumber>=0.10.0
+python-docx>=0.8.11
+pytesseract>=0.3.10
+pdf2image>=1.16.3
+beautifulsoup4>=4.12.0
+requests>=2.31.0
+selenium>=4.15.0            # For e-Courts scraping
+lxml>=4.9.0
+
+# ============================================
+# Vector Databases (RAG)
+# ============================================
+chromadb>=0.4.0             # Local vector store
+sentence-transformers>=2.2.0  # Embeddings
+# pymilvus>=2.3.0           # Distributed vector store (optional)
+faiss-cpu>=1.7.4
+
+# ============================================
+# LLM APIs & Inference
+# ============================================
+openai>=1.3.0
+groq>=0.4.0                 # Groq LPU inference
+langchain>=0.0.340
+langchain-community>=0.0.10
+
+# ============================================
+# Experiment Tracking & MLOps
+# ============================================
+mlflow>=2.8.0
+wandb>=0.15.0
+tensorboard>=2.14.0
+optuna>=3.3.0               # Hyperparameter optimization
+
+# ============================================
+# API & Web Framework
+# ============================================
+fastapi>=0.104.0
+uvicorn>=0.24.0
+pydantic>=2.4.0
+python-multipart>=0.0.6
+
+# ============================================
+# Summarization Evaluation
+# ============================================
+rouge-score>=0.1.2
+
+# ============================================
+# Visualization
+# ============================================
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.17.0
+wordcloud>=1.9.0
+
+# ============================================
+# Utilities
+# ============================================
+python-dotenv>=1.0.0
+pyyaml>=6.0.1
+tqdm>=4.66.0
+loguru>=0.7.0
+click>=8.1.0
+rich>=13.6.0
+
+# ============================================
+# Testing
+# ============================================
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-asyncio>=0.21.0
+
+# ============================================
+# Jupyter & Notebooks
+# ============================================
+jupyter>=1.0.0
+jupyterlab>=4.0.0
+ipywidgets>=8.1.0
+notebook>=7.0.0
+
+# ============================================
+# Code Quality
+# ============================================
+black>=23.10.0
+flake8>=6.1.0
+isort>=5.12.0
+mypy>=1.6.0
+pre-commit>=3.5.0

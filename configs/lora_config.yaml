@@ -1,0 +1,93 @@
+# OpenNyAI LoRA Configuration
+# ============================
+# Configuration for fine-tuning Llama 3 with LoRA/QLoRA
+
+# LoRA Hyperparameters
+lora:
+  r: 16                          # Rank of update matrices (8, 16, 32, 64)
+  lora_alpha: 32                 # Scaling factor (typically 2x r)
+  lora_dropout: 0.05             # Dropout probability
+  
+  # Target modules for LoRA (all linear layers recommended for legal reasoning)
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+  
+  bias: "none"                   # no bias training
+  task_type: "CAUSAL_LM"
+
+# Quantization (QLoRA)
+quantization:
+  use_4bit: true                 # Enable 4-bit quantization
+  bnb_4bit_quant_type: "nf4"     # NF4 quantization type
+  bnb_4bit_compute_dtype: "bfloat16"
+  use_double_quant: true         # Nested quantization
+
+# Model
+model:
+  base_model: "meta-llama/Meta-Llama-3-8B"
+  # Alternative: "meta-llama/Meta-Llama-3-70B" for larger model
+  max_seq_length: 2048
+  
+# Training
+training:
+  num_epochs: 3
+  batch_size: 4
+  gradient_accumulation_steps: 4
+  learning_rate: 2.0e-4
+  warmup_ratio: 0.03
+  weight_decay: 0.001
+  max_grad_norm: 0.3
+  
+  # Optimizer
+  optimizer: "paged_adamw_8bit"  # Memory-efficient optimizer for QLoRA
+  lr_scheduler: "cosine"
+  
+  # Checkpointing
+  save_steps: 100
+  save_total_limit: 3
+  logging_steps: 10
+  
+  # Mixed precision
+  fp16: true
+  gradient_checkpointing: true
+
+# Data
+data:
+  train_file: "data/corpora/aalap_instructions.jsonl"
+  val_file: null  # Optional validation file
+  
+  # Instruction format
+  instruction_key: "instruction"
+  input_key: "input"
+  output_key: "output"
+  
+  # Prompt template
+  prompt_template: |
+    ### Instruction:
+    {instruction}
+    
+    ### Input:
+    {input}
+    
+    ### Response:
+    {output}
+
+# Output
+output:
+  dir: "models/legal_llama"
+  adapter_name: "legal_llama_lora"
+  merge_on_complete: false       # Whether to merge LoRA with base model
+
+# Hardware
+hardware:
+  device_map: "auto"
+  max_memory: null               # Set if you need to limit GPU memory
+
+# Reproducibility
+seed: 42

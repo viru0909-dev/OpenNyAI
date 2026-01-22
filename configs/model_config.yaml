@@ -1,0 +1,44 @@
+# OpenNyAI Model Configuration
+# ===========================
+
+# Model Architecture
+model:
+  name: "ai4bharat/indic-bert"
+  type: "token_classification"  # token_classification, sequence_classification, seq2seq
+  max_length: 512
+  num_labels: 21  # For NER with legal entities
+
+# Legal Entity Labels
+labels:
+  - "O"
+  - "B-PETITIONER"
+  - "I-PETITIONER"
+  - "B-RESPONDENT"
+  - "I-RESPONDENT"
+  - "B-JUDGE"
+  - "I-JUDGE"
+  - "B-ADVOCATE"
+  - "I-ADVOCATE"
+  - "B-COURT"
+  - "I-COURT"
+  - "B-DATE"
+  - "I-DATE"
+  - "B-STATUTE"
+  - "I-STATUTE"
+  - "B-CASE_NUMBER"
+  - "I-CASE_NUMBER"
+  - "B-ORGANIZATION"
+  - "I-ORGANIZATION"
+  - "B-LOCATION"
+  - "I-LOCATION"
+
+# Tokenizer Settings
+tokenizer:
+  padding: "max_length"
+  truncation: true
+  return_tensors: "pt"
+
+# Inference Settings
+inference:
+  batch_size: 32
+  device: "auto"  # auto, cuda, cpu, mps
